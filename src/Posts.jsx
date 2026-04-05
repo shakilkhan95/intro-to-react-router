@@ -1,8 +1,13 @@
 import React from 'react'
-import { Link, useLoaderData } from 'react-router'
+import { Link, useLoaderData, useNavigate } from 'react-router'
 
 const Posts = () => {
     const posts = useLoaderData();
+    const navigate = useNavigate();
+
+    const handleShowDetails = (id) => {
+      navigate(`/posts/${id}`);
+    }
   return (
     <div>
       <h2>My posts are appears here</h2>
@@ -22,6 +27,8 @@ const Posts = () => {
           <Link to={`/posts/${post.id}`}>
             <button>See Details</button>
           </Link>
+
+          <button onClick={() => handleShowDetails(post.id)}>Show Details: {post.id}</button>
         </div>
       ))}
     </div>

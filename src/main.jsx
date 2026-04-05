@@ -1,24 +1,32 @@
-import { StrictMode, Suspense } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { createBrowserRouter, RouterProvider } from 'react-router'
-import Root from './Root.jsx'
-import Settings from './Settings.jsx'
-import Users from './Users.jsx'
-import Users2 from './Users2.jsx'
-import Posts from './Posts.jsx'
-import PostDetails from './PostDetails.jsx'
+import { StrictMode, Suspense } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Root from "./Root.jsx";
+import Settings from "./Settings.jsx";
+import Users from "./Users.jsx";
+import Users2 from "./Users2.jsx";
+import Posts from "./Posts.jsx";
+import PostDetails from "./PostDetails.jsx";
 
-const usersPromise = fetch("https://jsonplaceholder.typicode.com/users").then(res => res.json());
+const usersPromise = fetch("https://jsonplaceholder.typicode.com/users").then(
+  (res) => res.json(),
+);
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
     children: [
-      { index: true, Component: App },
-      { path: "/settings", Component: Settings },
+      {
+        index: true,
+        Component: App,
+      },
+      {
+        path: "settings",
+        Component: Settings,
+      },
       {
         path: "users",
         element: (
@@ -47,8 +55,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} fallbackElement={<h1>Loading...</h1>} />
   </StrictMode>,
-)
+);

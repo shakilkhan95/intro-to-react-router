@@ -1,8 +1,9 @@
 import React from 'react'
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 
 const PostDetails = () => {
     const postDetails = useLoaderData();
+    const navigate = useNavigate();
   return (
     <div>
       <h2>The Details of the Post is</h2>
@@ -17,6 +18,7 @@ const PostDetails = () => {
         }}>
         <h3>{postDetails.body}</h3>
         
+        <button onClick={()=> navigate(-1)}>Go Back</button>
       </div>
     </div>
   );
